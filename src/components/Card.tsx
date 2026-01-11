@@ -2,26 +2,21 @@
 import Image from "next/image"
 import Button from "./Button"
 import Link from "next/link"
-import { useState } from "react"
+import { DataItem } from "@/types/type"
+import { useUser } from "@/hooks/useUser"
+interface CardProps {
+  data: DataItem
+}
 
-export default function Card({
-  id,
-  name,
-  description,
-  imageUrl,
-  views,
-}: {
-  id: number
-  name: string
-  description: string
-  imageUrl: string
-  views: number
-}) {
-  const [liked, setLiked] = useState(false)
+
+export default function Card({ data }: CardProps) {
+  const { toggleFavorite, isFavorite } = useUser()
+  const isLiked = isFavorite(data.id)
+
   return (
     <div className="bg-neutral-primary-soft block max-w-sm p-6 border border-default rounded-base shadow-xs">
       <div className="relative w-full size-60 overflow-hidden">
-        <Image src={imageUrl} alt={name} fill className="object-cover" />
+        <Image src={data.picture_url} alt={data.name} fill className="object-cover" />
         <div className=" absolute top-0 m-2 p-1 bg-gray-800 border border-none rounded-lg gap-2 text-center flex items-center justify-center text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,13 +37,13 @@ export default function Card({
               d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
             />
           </svg>
-          {views}
+          {data.number_of_reviews}
         </div>
         <div
           className="cursor-pointer absolute top-0 right-0 m-2"
-          onClick={() => setLiked(!liked)}
+          onClick={() => toggleFavorite(data)}
         >
-          {liked ? (
+          {isLiked ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="red"
@@ -82,12 +77,12 @@ export default function Card({
         </div>
       </div>
       <h5 className="mt-6 mb-2 text-2xl font-semibold tracking-tight text-heading">
-        {name}
+        {data.name}
       </h5>
 
-      <p className="mb-6">{description}</p>
+      <p className="mb-6">{`${data.price || `$120`} for ${data.minimum_nights} nights`}</p>
       <div className="">
-        <Link href={`/houses/${id}`}>
+        <Link href={`/houses/${data.id}`}>
           <Button text="More" />
         </Link>
       </div>

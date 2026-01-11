@@ -4,8 +4,8 @@ import file from "@/data/airbnb-list.json" with { type: "json" }
 
 export default function Home() {
   return (
-    <main>
-      <Homes file={file as unknown as DataItem[]} />
-    </main>
+      <main>
+        <Homes data={file as unknown as DataItem[]} />
+      </main>
   )
 }
