@@ -51,9 +51,9 @@ export interface DataItem {
   availability_90: number | ""
   availability_365: number | ""
   calendar_last_scraped: string | ""
-  number_of_reviews: number 
-  number_of_reviews_ltm: number 
-  number_of_reviews_l30d: number 
+  number_of_reviews: number
+  number_of_reviews_ltm: number
+  number_of_reviews_l30d: number
   availability_eoy: number | ""
   number_of_reviews_ly: number | ""
   estimated_occupancy_l365d: number | ""
@@ -78,4 +78,14 @@ export interface DataItem {
 
 export interface Params {
   params: Promise<{ id: number }>
+}
+
+export interface UserContextType {
+  favoriteList: DataItem[]
+  toggleFavorite: (home: DataItem) => void
+  isFavorite: (id: string | number) => boolean
+}
+
+export interface CardProps {
+  data: DataItem
 }
