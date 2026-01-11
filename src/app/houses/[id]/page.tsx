@@ -1,6 +1,6 @@
 import { Params } from "@/types/type"
 import file from "@/data/airbnb-list.json" with { type: "json" }
-import Homedetails from "@/components/Homedetails"
+import Homedetails from "@/components/details/Homedetails"
 
 export default async function Home({ params }: Params) {
   const { id } = await params

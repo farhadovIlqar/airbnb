@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image"
-import Button from "./Button"
+import Button from "./shared/Button"
 import Link from "next/link"
 import { CardProps } from "@/types/type"
 import { useUser } from "@/hooks/useUser"

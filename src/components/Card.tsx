@@ -1,13 +1,12 @@
-'use client'
+"use client"
 import Image from "next/image"
-import Button from "./Button"
+import Button from "./shared/Button"
 import Link from "next/link"
 import { DataItem } from "@/types/type"
 import { useUser } from "@/hooks/useUser"
 interface CardProps {
   data: DataItem
 }
-
 
 export default function Card({ data }: CardProps) {
   const { toggleFavorite, isFavorite } = useUser()
@@ -16,7 +15,12 @@ export default function Card({ data }: CardProps) {
   return (
     <div className="bg-neutral-primary-soft block max-w-sm p-6 border border-default rounded-base shadow-xs">
       <div className="relative w-full size-60 overflow-hidden">
-        <Image src={data.picture_url} alt={data.name} fill className="object-cover" />
+        <Image
+          src={data.picture_url}
+          alt={data.name}
+          fill
+          className="object-cover"
+        />
         <div className=" absolute top-0 m-2 p-1 bg-gray-800 border border-none rounded-lg gap-2 text-center flex items-center justify-center text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +84,10 @@ export default function Card({ data }: CardProps) {
         {data.name}
       </h5>
 
-      <p className="mb-6">{`${data.price || `$120`} for ${data.minimum_nights} nights`}</p>
+      <p className="mb-6">
+        ${Number(data.price.slice(1, 3)) * data.minimum_nights || `120`} for{" "}
+        {data.minimum_nights} nights
+      </p>
       <div className="">
         <Link href={`/houses/${data.id}`}>
           <Button text="More" />
