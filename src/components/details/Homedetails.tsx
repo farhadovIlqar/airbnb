@@ -3,6 +3,7 @@ import { DataItem } from "@/types/type"
 import ImageGallery from "./ImageGallery"
 import { useUser } from "@/hooks/useUser"
 import HostPreview from "./HostPreview"
+import Map from "./Map"
 
 export default function Homedetails({ home }: { home: DataItem }) {
   const { toggleFavorite, isFavorite } = useUser()
@@ -77,6 +78,7 @@ export default function Homedetails({ home }: { home: DataItem }) {
       </header>
       <ImageGallery url={home.picture_url} />
       <HostPreview home={home} />
+      <Map home={home} />
     </>
   )
 }
