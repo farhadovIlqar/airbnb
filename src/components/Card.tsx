@@ -13,7 +13,7 @@ export default function Card({ data }: CardProps) {
   const isLiked = isFavorite(data.id)
 
   return (
-    <div className="bg-neutral-primary-soft block max-w-sm p-6 border border-default rounded-base shadow-xs">
+    <div className="bg-card block max-w-sm p-6 border border-border rounded-lg shadow-sm">
       <div className="relative w-full size-60 overflow-hidden">
         <Image
           src={data.picture_url}
@@ -21,7 +21,7 @@ export default function Card({ data }: CardProps) {
           fill
           className="object-cover"
         />
-        <div className=" absolute top-0 m-2 p-1 bg-gray-800 border border-none rounded-lg gap-2 text-center flex items-center justify-center text-white">
+        <div className=" absolute top-0 m-2 p-1 bg-secondary border border-border rounded-lg gap-2 text-center flex items-center justify-center text-secondary-foreground">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -80,11 +80,11 @@ export default function Card({ data }: CardProps) {
           )}
         </div>
       </div>
-      <h5 className="mt-6 mb-2 text-2xl font-semibold tracking-tight text-heading">
+      <h5 className="mt-6 mb-2 text-2xl font-semibold tracking-tight text-card-foreground">
         {data.name}
       </h5>
 
-      <p className="mb-6">
+      <p className="mb-6 text-muted-foreground">
         ${Number(data.price.slice(1, 3)) * data.minimum_nights || `120`} for{" "}
         {data.minimum_nights} nights
       </p>

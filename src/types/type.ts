@@ -86,6 +86,13 @@ export interface UserContextType {
   isFavorite: (id: string | number) => boolean
 }
 
+export type ThemeType = 'light' | 'dark'
+
+export interface ThemeContextType {
+  theme: ThemeType
+  toggleTheme: () => void
+}
+
 export interface CardProps {
   data: DataItem
 }
